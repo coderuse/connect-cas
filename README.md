@@ -25,10 +25,8 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
 
 ## Usage
 
-```javascript
-
 ###cas configuration 
-
+```javascript
 var cas = require('connect-cas');
 cas.configure({ 
     host: 'cev3.pramati.com',
@@ -37,21 +35,23 @@ cas.configure({
         proxyValidate: '/cas/p3/proxyValidate'
     }
 });
-
+```
 
 
 ##For the routes which needs authentication follow the below steps
 
-```javascript
-
 ###routes configuration
+```javascript
 var cas = require('connect-cas');
 app.get('/loggedin', cas.ssout('/loggedin'), cas.serviceValidate(), cas.authenticate(), function(req, res, next) {
     res.render( 'loggedin' );
 });
+```
 
 Explaination for the above code snippet:
-app.get( '/loggedin' ):
+
+  app.get( '/loggedin' ):
+
 When browser request for loggedin route 
 If the user not autheticated by CAS thenn redirect the request to cas login page and get the ticket from CAS after succesful login.
 After validating the ticket respond to the browser with res.render( 'loggedin' )
@@ -59,6 +59,7 @@ If the user is Already authentiated then it as normal flow respond with res.rend
 
 
 Logout Implementaion in Node app:
+
 ```javascript
 app.get('/services/logout', function(req, res, next) {
   if (req.session.destroy) {
@@ -68,16 +69,21 @@ app.get('/services/logout', function(req, res, next) {
   }
   res.end( '' );
 });
+```
 
 Above code will invalidate the session of node application but not CAS session.
 If you would like to invalidate the CAS session then after the success of the above response call the below code the browser script
-window.location = "//cev3.pramati.com/cas/logout?service=" + document.URL; 
+
+  window.location = "//cev3.pramati.com/cas/logout?service=" + document.URL; 
 
 
 If you would like to invalidate node applicaiton session in case of explicit CAS logged out is happend in browser
 
+
 Then Add the below code in node js
-app.post('/loggedin', cas.ssout('/loggedin') );
+  
+  app.post('/loggedin', cas.ssout('/loggedin') );
+
 Above route will be called by the CAS server if explicit logout is happend, with a ticket in the req.body
 By using the ticket connect-cas module invalidate the session for the particular client.
 
