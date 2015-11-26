@@ -38,7 +38,7 @@ cas.configure({
 ```
 
 
-##For the routes which needs authentication follow the below steps
+###For the routes which needs authentication follow the below steps
 
 ###routes configuration
 ```javascript
@@ -53,9 +53,9 @@ Explaination for the above code snippet:
   app.get( '/loggedin' ):
 ```
 When browser request for loggedin route 
-If the user not autheticated by CAS thenn redirect the request to cas login page and get the ticket from CAS after succesful login.
-After validating the ticket respond to the browser with res.render( 'loggedin' )
-If the user is Already authentiated then it as normal flow respond with res.render( 'loggedin' )
+  - If the user not autheticated by CAS then redirect the request to cas login page and get the ticket from CAS after succesful login.
+  - After validating the ticket respond to the browser with res.render( 'loggedin' )
+  - If the user is already authentiated then it as normal flow respond with res.render( 'loggedin' )
 
 
 ###Logout Implementaion in Node app:
@@ -73,6 +73,7 @@ app.get('/services/logout', function(req, res, next) {
 
 Above code will invalidate the session of node application but not CAS session.
 If you would like to invalidate the CAS session then after the success of the above response call the below code the browser script
+
 ```javascript
   window.location = "//cev3.pramati.com/cas/logout?service=" + document.URL; 
 ```
