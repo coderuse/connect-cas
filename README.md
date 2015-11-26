@@ -8,10 +8,9 @@ Adapted from https://github.com/jmarca/cas_validate
 
 ## Installation
 
-    npm install connect-cas
+    npm install uidev547/connect-cas
             
 ## Options
-
 Many of these options are borrowed from node's [url documentation](http://nodejs.org/api/url.html).  You may set global options through the `.configure()` method or override them with any of the exposed middleware.
 
   - `procotol` The protocol to communicate with the CAS Server.  Defaults to 'https'.
@@ -27,42 +26,61 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
 ## Usage
 
 ```javascript
+
+###cas configuration 
+
 var cas = require('connect-cas');
-var connect = require('connect');
+cas.configure({ 
+    host: 'cev3.pramati.com',
+    paths: {
+        serviceValidate: '/cas/p3/serviceValidate', // CAS 3.0
+        proxyValidate: '/cas/p3/proxyValidate'
+    }
+});
 
-connect()
-  .use(connect.cookieParser('hello world'))
-  .use(connect.cookieSession()) // or whatever session store
-  .use(cas.serviceValidate())
-  .use(cas.authenticate())
-```
 
-## Proxy Tickets
 
-To proxy services, you can configure the `serviceValidate` middleware like below:
+##For the routes which needs authentication follow the below steps
 
-```
-connect()
-  ...
-  .use(cas.serviceValidate({pgtUrl: '/pgtCallback'}))
-  .use(cas.proxyTicket({targetService: 'https://service-to-proxy/blah'});
-  ...
-```
+```javascript
 
-The proxy granting ticket value will be available in `req.session.pgt` and a hash of proxy tickets are available in `req.pt`.  You may then append that proxy ticket manually to the services you wish to proxy.  To reuse the proxy tickets, see [#25](https://github.com/AceMetrix/connect-cas/issues/25).
+###routes configuration
+var cas = require('connect-cas');
+app.get('/loggedin', cas.ssout('/loggedin'), cas.serviceValidate(), cas.authenticate(), function(req, res, next) {
+    res.render( 'loggedin' );
+});
 
-You may also pass in an absolute url if you wish for the pgtCallback to be in a separate app.  If so, pass in an additional `pgtFn`:
+Explaination for the above code snippet:
+app.get( '/loggedin' ):
+When browser request for loggedin route 
+If the user not autheticated by CAS thenn redirect the request to cas login page and get the ticket from CAS after succesful login.
+After validating the ticket respond to the browser with res.render( 'loggedin' )
+If the user is Already authentiated then it as normal flow respond with res.render( 'loggedin' )
 
-```
-connect()
-.use(cas.serviceValidate({pgtUrl: 'https://some-server.com/pgtCallback', pgtFn:function(pgtIou, cb){
-  // given the pgtIou, retrieve the pgtId however you can.  Then call ...
-  cb(err, 'PGT-thepgtid');
-}));
-```
 
-## Notes
-- If you are behind an https proxy, be sure to set `X-Forwarded-Proto` headers. Connect-cas uses it to infer its own location for redirection.
+Logout Implementaion in Node app:
+```javascript
+app.get('/services/logout', function(req, res, next) {
+  if (req.session.destroy) {
+      req.session.destroy();
+  } else {
+      req.session = null;
+  }
+  res.end( '' );
+});
+
+Above code will invalidate the session of node application but not CAS session.
+If you would like to invalidate the CAS session then after the success of the above response call the below code the browser script
+window.location = "//cev3.pramati.com/cas/logout?service=" + document.URL; 
+
+
+If you would like to invalidate node applicaiton session in case of explicit CAS logged out is happend in browser
+
+Then Add the below code in node js
+app.post('/loggedin', cas.ssout('/loggedin') );
+Above route will be called by the CAS server if explicit logout is happend, with a ticket in the req.body
+By using the ticket connect-cas module invalidate the session for the particular client.
+
 
 ## License
 
