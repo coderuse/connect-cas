@@ -49,16 +49,16 @@ app.get('/loggedin', cas.ssout('/loggedin'), cas.serviceValidate(), cas.authenti
 ```
 
 Explaination for the above code snippet:
-
+```javascript
   app.get( '/loggedin' ):
-
+```
 When browser request for loggedin route 
 If the user not autheticated by CAS thenn redirect the request to cas login page and get the ticket from CAS after succesful login.
 After validating the ticket respond to the browser with res.render( 'loggedin' )
 If the user is Already authentiated then it as normal flow respond with res.render( 'loggedin' )
 
 
-Logout Implementaion in Node app:
+###Logout Implementaion in Node app:
 
 ```javascript
 app.get('/services/logout', function(req, res, next) {
@@ -73,17 +73,18 @@ app.get('/services/logout', function(req, res, next) {
 
 Above code will invalidate the session of node application but not CAS session.
 If you would like to invalidate the CAS session then after the success of the above response call the below code the browser script
-
+```javascript
   window.location = "//cev3.pramati.com/cas/logout?service=" + document.URL; 
+```
 
-
+### Handling explict logout for CAS
 If you would like to invalidate node applicaiton session in case of explicit CAS logged out is happend in browser
 
 
 Then Add the below code in node js
-  
+```javascript
   app.post('/loggedin', cas.ssout('/loggedin') );
-
+```
 Above route will be called by the CAS server if explicit logout is happend, with a ticket in the req.body
 By using the ticket connect-cas module invalidate the session for the particular client.
 
