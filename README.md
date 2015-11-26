@@ -38,6 +38,9 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
 - If whenever CAS session is about to expire CAS will do post request to all registed 'redirected url' s with ticket by which application is validated. By using the ticket applcation should able to invalidate the application session for the ticket. 
 
 
+###Diagram for tipical Node Sign in:
+![IMAGE ALT TEXT HERE](http://plantuml.com:80/plantuml/png/VLFBJiCm4BpdA-O7-84Ua4el8AGUA7p04cyJAwuTx4sZ_Zrh9u3BguUgISSpixDZiU8OptQqBJduO1ZRSNJw93PuM8yfMTzXjptWOBlyfcdkOfWJHzpSt6AlHmuSpnmtsAOXOuyXOen1k1Ks6AbZpBrjUtXcameLJTApbrMcQSW97euL6Mm2kSXaBZMOJGFzLBZiOVMpmHEdCNYpp94Mm6obHon_9COhjGCau7Kvqh3JbzVA9d1I1i7WmmoLrWWK-P_klj8JTgvIm8CIUi5Z9flxW4kOG57X0LrGt8xIIadgl6F1cPmrEckHhBF-X6wWMIk3ReXIiGSDIB-ZxNf16zdam7IZ-ij6NKHsb4V99ctBBz4jmKpUlaty70RsHUxBpTM0ztp1w9Wqh3OuLmYLJNSog65jYP94XL2a4ykQrbyrUM95fqzB9Rn3jQnlNDhEedACuPJByzicgcIorPPyoVaZoTfiITcU6QTbiJ0iP5twPVpQTA6jHlznzAzkq37Fe2lHgklbI9pIUhFstszRNEjRIdhLsuQzUGS0)
+
 ## Usage
 ###cas configuration 
 ```javascript
@@ -51,8 +54,6 @@ cas.configure({
 });
 ```
 
-Diagram for tipical Node Sign in:
-![IMAGE ALT TEXT HERE](http://plantuml.com:80/plantuml/png/VLFBJiCm4BpdA-O7-84Ua4el8AGUA7p04cyJAwuTx4sZ_Zrh9u3BguUgISSpixDZiU8OptQqBJduO1ZRSNJw93PuM8yfMTzXjptWOBlyfcdkOfWJHzpSt6AlHmuSpnmtsAOXOuyXOen1k1Ks6AbZpBrjUtXcameLJTApbrMcQSW97euL6Mm2kSXaBZMOJGFzLBZiOVMpmHEdCNYpp94Mm6obHon_9COhjGCau7Kvqh3JbzVA9d1I1i7WmmoLrWWK-P_klj8JTgvIm8CIUi5Z9flxW4kOG57X0LrGt8xIIadgl6F1cPmrEckHhBF-X6wWMIk3ReXIiGSDIB-ZxNf16zdam7IZ-ij6NKHsb4V99ctBBz4jmKpUlaty70RsHUxBpTM0ztp1w9Wqh3OuLmYLJNSog65jYP94XL2a4ykQrbyrUM95fqzB9Rn3jQnlNDhEedACuPJByzicgcIorPPyoVaZoTfiITcU6QTbiJ0iP5twPVpQTA6jHlznzAzkq37Fe2lHgklbI9pIUhFstszRNEjRIdhLsuQzUGS0)
 
 ###For the routes which needs authentication follow the below steps
 
