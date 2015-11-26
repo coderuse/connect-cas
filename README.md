@@ -23,6 +23,21 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
     - `proxy` Path to obtain a proxy ticket
     - `login` Path to the CAS login
 
+###How does single sign-on work?
+- CAS is the Central Authentication System which is used identify the user.
+- When CAS login page is requested with query paramter service='redirection url'
+- If the browser is already authenticated then it will redirect back to 'redirection url' with a query parameter ticket=uniqueTicket
+- This uniqueTicket is valid only once and with time limit.
+- We can redeam this ticket with CAS server and get the user details.
+
+###How does single sign-out work?
+- If the there are multiple applications which using CAS login and if logout from one application does not logout from the other application.
+- If we would like to do, logout from CAS should logout from the all applications which are using CAS, then single sign out comes in to place.
+- When we autheticate any aplication with using CAS signin with query parameter service='redirection url'
+- Then CAS will register redirection url with CAS session. 
+- If whenever CAS session is about to expire CAS will do post request to all registed 'redirected url' s with ticket by which application is validated. By using the ticket applcation should able to invalidate the application session for the ticket. 
+
+
 ## Usage
 
 ###cas configuration 
