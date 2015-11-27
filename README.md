@@ -18,8 +18,8 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
   - `port` CAS server port number.  Defaults to 443.
   - `gateway` Send all validation requests through the CAS gateway feature.  Defaults to false.
   - `paths`
-    - `serviceValidate` Path to validate TGT
-    - `proxyValidate` Path to validate PGT (not implemented)
+    - `serviceValidate` Path to validate TGT ( Ticket-granting ticket )
+    - `proxyValidate` Path to validate PGT( Proxy-granting Ticket ) (not implemented)
     - `proxy` Path to obtain a proxy ticket
     - `login` Path to the CAS login
 
@@ -39,7 +39,7 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
 
 
 ###Diagram for tipical Node Sign in:
-![IMAGE ALT TEXT HERE](http://plantuml.com:80/plantuml/png/VLFBJiCm4BpdA-O7-84Ua4el8AGUA7p04cyJAwuTx4sZ_Zrh9u3BguUgISSpixDZiU8OptQqBJduO1ZRSNJw93PuM8yfMTzXjptWOBlyfcdkOfWJHzpSt6AlHmuSpnmtsAOXOuyXOen1k1Ks6AbZpBrjUtXcameLJTApbrMcQSW97euL6Mm2kSXaBZMOJGFzLBZiOVMpmHEdCNYpp94Mm6obHon_9COhjGCau7Kvqh3JbzVA9d1I1i7WmmoLrWWK-P_klj8JTgvIm8CIUi5Z9flxW4kOG57X0LrGt8xIIadgl6F1cPmrEckHhBF-X6wWMIk3ReXIiGSDIB-ZxNf16zdam7IZ-ij6NKHsb4V99ctBBz4jmKpUlaty70RsHUxBpTM0ztp1w9Wqh3OuLmYLJNSog65jYP94XL2a4ykQrbyrUM95fqzB9Rn3jQnlNDhEedACuPJByzicgcIorPPyoVaZoTfiITcU6QTbiJ0iP5twPVpQTA6jHlznzAzkq37Fe2lHgklbI9pIUhFstszRNEjRIdhLsuQzUGS0)
+![IMAGE ALT TEXT HERE](http://plantuml.com:80/plantuml/png/VLFBJiCm4BpdA-O7-84Ua0eN458Fj7p04cyJAwuTx4sZ_Zrh9u21GWvH7hipipDhiU8OXyjeMtBmmJ2su-ZqJMpmi1vJihx3_NOFcgHdB-k_fhcBOKuSSNDpYvrsxZcUEMwmJKDkEOQ8CGRXLjXWf8unzxRjuPbDkef8Jl1uhC1W4yX59dEfYzaqqAkgonfMFHiySng3DyiuQIcOhVI8vKTYl58xG09UbvQ6dNxypcm29qKG33xCK6frGYl_uzrLVCBELGnuL40lUCfWSnzm2HCeQdb05xJkdj8AIQgyOy6Pd3KwQw6ilVuitK17VPiuIMPIGrVkRL9OJOzIqGnrJU_HThsWZMooYvgsFjcewUJcF5_kjYs_HBUuDNchu8Smi2yQlYHUTVk1BnWTaphP1kSAiA9gO8DEevkaO55BADA9PRNohnsgvieWnTbzbUGFB1mMbcCCfsp4jPWgsxBKbdm9uSFcMco9m9uPfoLr61QoBbsneHPTOAlHVxN-jJXqp3DeD7eEzEGaJcazVRkV9pAkRfSD_hRK3NlJl0C0)
 
 ## Usage
 ###cas configuration 
