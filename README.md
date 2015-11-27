@@ -38,7 +38,7 @@ Many of these options are borrowed from node's [url documentation](http://nodejs
 - If whenever CAS session is about to expire CAS will do post request to all registed 'redirected url' s with ticket by which application is validated. By using the ticket applcation should able to invalidate the application session for the ticket. 
 
 
-###Diagram for tipical Node Sign in:
+###Diagram for typical Node Sign in:
 ![IMAGE ALT TEXT HERE](http://plantuml.com:80/plantuml/png/VLFBJiCm4BpdA-O7-84Ua0eN458Fj7p04cyJAwuTx4sZ_Zrh9u21GWvH7hipipDhiU8OXyjeMtBmmJ2su-ZqJMpmi1vJihx3_NOFcgHdB-k_fhcBOKuSSNDpYvrsxZcUEMwmJKDkEOQ8CGRXLjXWf8unzxRjuPbDkef8Jl1uhC1W4yX59dEfYzaqqAkgonfMFHiySng3DyiuQIcOhVI8vKTYl58xG09UbvQ6dNxypcm29qKG33xCK6frGYl_uzrLVCBELGnuL40lUCfWSnzm2HCeQdb05xJkdj8AIQgyOy6Pd3KwQw6ilVuitK17VPiuIMPIGrVkRL9OJOzIqGnrJU_HThsWZMooYvgsFjcewUJcF5_kjYs_HBUuDNchu8Smi2yQlYHUTVk1BnWTaphP1kSAiA9gO8DEevkaO55BADA9PRNohnsgvieWnTbzbUGFB1mMbcCCfsp4jPWgsxBKbdm9uSFcMco9m9uPfoLr61QoBbsneHPTOAlHVxN-jJXqp3DeD7eEzEGaJcazVRkV9pAkRfSD_hRK3NlJl0C0)
 
 ## Usage
